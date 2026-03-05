@@ -11,25 +11,43 @@
 .callbutton-widget {
     position: fixed;
     bottom: var(--callbutton-widget-indent);
-    right: var(--callbutton-widget-indent);
+    left: var(--callbutton-widget-indent);
 
-    text-align: right;
+    text-align: center;
 
-    background: #0EA5E9;
-    border-radius: 32px;
+    background: var(--brand-color);
+    border-radius: 50%;
     border: none;
+    padding: 8px;
 
     z-index: 5;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+
+/* show optional label next to the button when expanded */
+.callbutton-widget.expanded::after {
+    content: 'Call';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 8px;
+    background: var(--brand-color);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
 }
 
 .callbutton {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     width: var(--callbutton-widget-button-width-height);
     height: var(--callbutton-widget-button-width-height);
 
     padding: 0;
-    padding-top: 4px;
 
     background: #0EA5E9;
     border-radius: 32px;
@@ -75,6 +93,65 @@
     margin: 0;
     background: white;
     padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* redesigned status/timer area */
+.status-timer {
+    width: 100%;
+    text-align: center;
+    margin-top: 12px;
+}
+
+.number-display {
+    width: 100%;
+    min-height: 40px;
+    margin-top: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    text-align: center;
+    letter-spacing: 2px;
+    color: #3D5B68;
+}
+
+.dialpad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-top: 16px;
+    width: 100%;
+    max-width: 240px;
+}
+
+.number-pad-item {
+    width: 100%;
+    padding: 12px 0;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    border: 1px solid #C5CED2;
+    border-radius: 8px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.number-pad-item.pad-disable {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.number-pad-item.pad-enable {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.controls {
+    width: 100%;
+    margin-top: 24px;
+    display: flex;
+    justify-content: space-around;
 }
 
 .logo-icon-container {

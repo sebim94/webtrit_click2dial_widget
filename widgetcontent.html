@@ -129,6 +129,10 @@
 
         window.addEventListener('load', () => {
             window.startCall();
+            // wire up keypad clicks after elements exist
+            document.querySelectorAll('.number-pad-item').forEach(el => {
+                el.addEventListener('click', window.clickDialButton);
+            });
         });
 
         window.muteAudio = function () {
@@ -165,25 +169,40 @@
     </div>
 
     <div class="header-container">
-        Call to company contact centre
+        WebTrit Call Widget
     </div>
 
-    <div class="timing-container" id="timingcontainer"></div>
-
-    <div class="typed-number-container">
-        <span id="typedNumberContainer" class="numbers-input-text"></span>
+    <!-- status/timer bar -->
+    <div class="status-timer">
+        <span id="timingcontainer" class="timing-container"></span>
     </div>
 
-    <div class="action-buttons-container">
-        <div class="action-button central" onclick="window.endCall();">
-            <div>
-                <img src="/src/assets/call.svg">
-            </div>
+    <!-- dialled number display -->
+    <div class="number-display" id="typedNumberContainer"></div>
+
+    <!-- numeric keypad for DTMF -->
+    <div class="dialpad">
+        <div class="number-pad-item pad-disable">1</div>
+        <div class="number-pad-item pad-disable">2</div>
+        <div class="number-pad-item pad-disable">3</div>
+        <div class="number-pad-item pad-disable">4</div>
+        <div class="number-pad-item pad-disable">5</div>
+        <div class="number-pad-item pad-disable">6</div>
+        <div class="number-pad-item pad-disable">7</div>
+        <div class="number-pad-item pad-disable">8</div>
+        <div class="number-pad-item pad-disable">9</div>
+        <div class="number-pad-item pad-disable">*</div>
+        <div class="number-pad-item pad-disable">0</div>
+        <div class="number-pad-item pad-disable">#</div>
+    </div>
+
+    <!-- call controls -->
+    <div class="controls action-buttons-container">
+        <div class="action-button central hangup" onclick="window.endCall();">
+            <img src="/src/assets/call.svg" alt="Hang up">
         </div>
-        <div class="action-button" onclick="window.muteAudio();">
-            <div id="microphoneicon">
-                <img src="/src/assets/microphone.svg">
-            </div>
+        <div class="action-button mute" onclick="window.muteAudio();">
+            <img id="microphoneicon" src="/src/assets/microphone.svg" alt="Mute/unmute">
         </div>
     </div>
 </div>

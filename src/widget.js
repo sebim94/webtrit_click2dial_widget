@@ -47,8 +47,10 @@ if (document.getElementById("CallButtonWidget")) {
             iframeElement.style.display = 'block';
 
             divElement.appendChild(iframeElement);
+            divElement.classList.add('expanded');
         } else {
             divElement.removeChild(elem);
+            divElement.classList.remove('expanded');
         }
     });
     buttonElement.innerHTML = `<svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
